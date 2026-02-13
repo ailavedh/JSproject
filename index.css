@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Caveat:wght@700&family=Lobster&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.d-none {
+    display: none !important;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+/* Navbar */
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-link.active {
+    color: #ff4757 !important;
+    font-weight: bold;
+}
+
+.nav-image {
+    height: 50px;
+}
+
+/* Spacing Helpers */
+.section-padding {
+    padding-top: 80px;
+    margin-top: 20px;
+}
+
+/* Landing Page */
+.main-first-home-page-bg {
+    background-image: url("https://paperplanedesign.in/cdn/shop/files/red-color-brick-pattern-wallpaper-for-cafe-and-restaurants-wall-decoration-998997.jpg?v=1715591697&width=1080");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.greeting-style {
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 50px;
+    text-shadow: 2px 2px 4px black;
+}
+
+.main-section-home-page-head {
+    font-family: 'Lobster', cursive;
+    font-size: 60px;
+    color: black;
+}
+
+.main-home-button {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.main-home-button:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Cards General */
+.restaurant-card,
+.menu-card-background {
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    background: white;
+    cursor: pointer;
+    /* Makes it look clickable */
+}
+
+.restaurant-card:hover,
+.menu-card-background:hover {
+    transform: translateY(-5px);
+}
+
+.restaurant-img,
+.menu-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Menu Specifics */
+.menu-back-bg {
+    background-image: url("https://i.pinimg.com/236x/1c/2a/ed/1c2aed549a2097d5d9e4ffde5a7e44c9.jpg");
+    background-size: cover;
+    min-height: 80vh;
+}
+
+.menu-card-background {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+/* Buttons */
+.tiffins-btn {
+    background-color: #ff9f43;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.center-nonveg {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.discount-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.follow-us-button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Payment & Footer */
+.my-orders-bg {
+    background-color: #f1f2f6;
+    min-height: 80vh;
+}
+
+.payment-card-img {
+    width: 50px;
+    margin: 10px;
+}
+
+.follow-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 20px;
+    color: #ff4757;
+    transition: 0.3s;
+}
+
+.follow-icon:hover {
+    background-color: #ff4757;
+    color: white;
+}
+
+.food-logo {
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Toast */
+#simpleToast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: #2ecc71;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        right: -100px;
+        opacity: 0;
+    }
+
+    to {
+        right: 20px;
+        opacity: 1;
+    }
+}
+
+/* === MOBILE RESPONSIVENESS === */
+@media (max-width: 768px) {
+    .main-section-home-page-head {
+        font-size: 40px;
+    }
+
+    .greeting-style {
+        font-size: 35px;
+    }
+
+    .home-bg-image {
+        padding: 20px !important;
+    }
+
+    .home-image-heading {
+        font-size: 25px;
+    }
+
+    .responsive-h1 {
+        font-size: 24px;
+    }
+
+    .card-body h5 {
+        font-size: 18px;
+    }
+
+    .payment-card-img {
+        width: 40px;
+        margin: 5px;
+    }
+}

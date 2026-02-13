@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambert Restaurant</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body onload="startApp()">
+
+    <div id="simpleToast" class="d-none">
+        Order Placed Successfully!
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" onclick="showSection('homeSection', null)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd20W8Lhn6wMGxPRFNabFqZDP0VQJ9J6sPEg&s" class="nav-image" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link active" onclick="showSection('homeSection', this)">Home</a>
+                    <a class="nav-link" onclick="showSection('menuSection', this)">Menu</a>
+                    <a class="nav-link" onclick="showSection('myOrdersSection', this)">My Orders</a>
+                    <a class="nav-link" onclick="showSection('paymentSection', this)">Payment</a>
+                    <a class="nav-link" onclick="showSection('contactSection', this)">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="homeSection" class="full-screen-section">
+        <div class="main-first-home-page-bg">
+            <div class="text-center content-box">
+                <h2 id="greetingMsg" class="greeting-style">Hello!</h2>
+                <h1 class="main-section-home-page-head"> It's Foodie- <br />Time</h1>
+                <div class="btn-center mt-3">
+                    <button class="main-home-button" onclick="showSection('restaurantSection', null)"> Find Food </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="restaurantSection" class="d-none section-padding container">
+        <div class="home-bg-image shadow text-center p-4 mb-4">
+            <h1 class="home-image-heading"> Welcome To Our Restaurant </h1>
+
+        </div>
+
+        <h3 class="text-center mb-4">Top Restaurants</h3>
+        <p class="text-center text-muted small mb-4">(Click on a restaurant to visit their website)</p>
+        <div id="restaurantsList" class="row"></div>
+
+        <div class="text-center mt-5 mb-5">
+            <button class="tiffins-btn" onclick="showSection('menuSection', null)">Explore Menu</button>
+        </div>
+    </div>
+
+    <div id="menuSection" class="d-none section-padding container">
+        <div class="menu-back-bg p-4 rounded">
+            <h1 class="menu-section-main-heading pt-2 pb-4">Explore Our Menu</h1>
+            <div id="categoriesList" class="row"></div>
+
+            <div class="text-center mt-4">
+                <button class="tiffins-btn" onclick="showSection('homeSection', null)">Back Home</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="foodItemsSection" class="d-none section-padding container">
+        <div class="p-4 rounded" id="foodItemsBg">
+            <h1 id="categoryTitle" class="non-veg-heading">Items</h1>
+            <div id="foodList" class="row"></div>
+
+            <div class="text-center mt-4 mb-5">
+                <button class="tiffins-btn" onclick="showSection('menuSection', null)">Back to Categories</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="orderFormSection" class="d-none section-padding container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card p-4 shadow">
+                    <h2 class="text-center text-danger">Enter Details</h2>
+                    <hr />
+                    <div class="text-center mb-4">
+                        <h4 id="orderItemName" class="text-primary"></h4>
+                        <h5 id="orderItemPrice" class="text-success font-weight-bold"></h5>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="inputName" class="form-control" placeholder="Enter Name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="inputAddress" class="form-control" rows="3" placeholder="Enter Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" id="inputPhone" class="form-control" placeholder="Mobile Number" />
+                    </div>
+
+                    <button class="btn btn-success btn-block" onclick="proceedToPayment()">Proceed to Pay</button>
+                    <button class="btn btn-secondary btn-block" onclick="showSection('menuSection', null)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentSelectionSection" class="d-none section-padding container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="card p-4 shadow text-center">
+                    <h3 class="mb-4">Select Payment Method</h3>
+                    <p class="text-muted mb-4">Total Amount: <span id="finalPrice" class="font-weight-bold text-dark"></span></p>
+
+                    <button class="btn btn-outline-primary btn-block p-3 mb-3 font-weight-bold" onclick="selectUPI()">
+                        <i class="fas fa-mobile-alt mr-2"></i> UPI (GPay/PhonePe)
+                    </button>
+
+                    <button class="btn btn-success btn-block p-3 font-weight-bold" onclick="confirmCOD()">
+                        <i class="fas fa-money-bill-wave mr-2"></i> Cash on Delivery
+                    </button>
+
+                    <button class="btn btn-link mt-3" onclick="showSection('orderFormSection', null)">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myOrdersSection" class="d-none section-padding container">
+        <div class="my-orders-bg p-4 rounded">
+            <h1 class="text-center pb-3">My Orders</h1>
+            <div class="text-right mb-3">
+                <button class="btn btn-danger btn-sm" onclick="clearOrders()">Clear History</button>
+            </div>
+            <div id="myOrdersList" class="row justify-content-center"></div>
+
+            <div class="text-center mt-5">
+                <button class="tiffins-btn" onclick="showSection('homeSection', null)">Back Home</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentSection" class="d-none section-padding container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="discount-bg">
+                    <img src="https://img.freepik.com/premium-vector/sale-25-off-poster-design-template_109161-14815.jpg?semt=ais_hybrid&w=740&q=80" class="img-fluid" style="max-height: 300px;" />
+                </div>
+                <h1 class="mt-3 responsive-h1">Delivery and Payment</h1>
+                <p>Enjoy hassle-free payment with multiple options.</p>
+                <div class="mt-3">
+                    <img src="https://d2clawv67efefq.cloudfront.net/ccbp-responsive-website/visa-card-img.png" class="payment-card-img" />
+                    <img src="https://d2clawv67efefq.cloudfront.net/ccbp-responsive-website/master-card-img.png" class="payment-card-img" />
+                    <img src="https://d2clawv67efefq.cloudfront.net/ccbp-responsive-website/paypal-card-img.png" class="payment-card-img" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4 mb-5">
+            <button class="discount-btn" onclick="showSection('homeSection', null)">Back Home</button>
+        </div>
+    </div>
+
+    <div id="contactSection" class="d-none section-padding container">
+        <div class="text-center pt-5">
+            <h1>Follow Us</h1>
+
+        </div>
+        <div class="text-center pt-5 mb-5">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd20W8Lhn6wMGxPRFNabFqZDP0VQJ9J6sPEg&s" class="food-logo mb-3" />
+            <p class="font-weight-bold">orderfood@Restaurant1234 always.</p>
+            <p>Email ID:- Restaurant1234@email.com</p>
+            <button class="follow-us-button" onclick="showSection('homeSection', null)">Back Home</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
